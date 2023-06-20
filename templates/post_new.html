@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h2>New post</h2>
+    <form acction="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <a type="button" class="btn btn-secondary" href="{% url 'home' %}">Cancel</a>
+        <button class="btn btn-success" type="submit">Post</button>
+    </form>
+{% endblock content %}

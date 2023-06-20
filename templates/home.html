@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row g-3">
+            {% for post in post_list %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <img src="{% if post.image %}{{ post.image.url }}{% else %}{% static 'images/no-image.png' %}{% endif %}" alt="{{ post.title }}" class="card-img-top img-fluid responsive" style="width: auto; height: 195px;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <p class="card-text">{{ post.body|truncatechars:70 }}</p>
+                            <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Read More</a>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">{{ post.author }} | Updated: {{ post.updated }}</small>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
